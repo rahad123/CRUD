@@ -1,0 +1,168 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'n' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData n
+8 silly fetchNamedPackageData n
+9 silly mapToRegistry name n
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'n',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'n',
+12 silly mapToRegistry   name: 'n',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/n
+14 verbose request uri https://registry.npmjs.org/n
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 4:54:41 PM
+17 verbose request id 6054f724b2cc5b5f
+18 verbose etag W/"59f756bb-116d0"
+19 verbose lastModified Mon, 30 Oct 2017 16:43:39 GMT
+20 http request GET https://registry.npmjs.org/n
+21 http 200 https://registry.npmjs.org/n
+22 verbose headers { date: 'Sun, 12 Dec 2021 10:54:42 GMT',
+22 verbose headers   'content-type': 'application/json',
+22 verbose headers   'transfer-encoding': 'chunked',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   'cf-ray': '6bc66a86b8e74987-SIN',
+22 verbose headers   'cache-control': 'public, max-age=300',
+22 verbose headers   etag: 'W/"1bb870fc215487fdbef37b2ebca5b8b5"',
+22 verbose headers   'last-modified': 'Sat, 04 Dec 2021 00:49:47 GMT',
+22 verbose headers   vary: 'accept-encoding, accept',
+22 verbose headers   'cf-cache-status': 'REVALIDATED',
+22 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+22 verbose headers   'x-amz-replication-status': 'PENDING',
+22 verbose headers   server: 'cloudflare',
+22 verbose headers   'content-encoding': 'gzip' }
+23 silly get cb [ 200,
+23 silly get   { date: 'Sun, 12 Dec 2021 10:54:42 GMT',
+23 silly get     'content-type': 'application/json',
+23 silly get     'transfer-encoding': 'chunked',
+23 silly get     connection: 'keep-alive',
+23 silly get     'cf-ray': '6bc66a86b8e74987-SIN',
+23 silly get     'cache-control': 'public, max-age=300',
+23 silly get     etag: 'W/"1bb870fc215487fdbef37b2ebca5b8b5"',
+23 silly get     'last-modified': 'Sat, 04 Dec 2021 00:49:47 GMT',
+23 silly get     vary: 'accept-encoding, accept',
+23 silly get     'cf-cache-status': 'REVALIDATED',
+23 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+23 silly get     'x-amz-replication-status': 'PENDING',
+23 silly get     server: 'cloudflare',
+23 silly get     'content-encoding': 'gzip' } ]
+24 verbose get saving n to /home/rootsoftit/.npm/registry.npmjs.org/n/.cache.json
+25 verbose correctMkdir /home/rootsoftit/.npm correctMkdir not in flight; initializing
+26 silly install normalizeTree
+27 silly loadCurrentTree Finishing
+28 silly loadIdealTree Starting
+29 silly install loadIdealTree
+30 silly cloneCurrentTree Starting
+31 silly install cloneCurrentTreeToIdealTree
+32 silly cloneCurrentTree Finishing
+33 silly loadShrinkwrap Starting
+34 silly install loadShrinkwrap
+35 silly loadShrinkwrap Finishing
+36 silly loadAllDepsIntoIdealTree Starting
+37 silly install loadAllDepsIntoIdealTree
+38 silly resolveWithNewModule n@8.0.1 checking installable status
+39 silly cache add args [ 'n', null ]
+40 verbose cache add spec n
+41 silly cache add parsed spec Result {
+41 silly cache add   raw: 'n',
+41 silly cache add   scope: null,
+41 silly cache add   escapedName: 'n',
+41 silly cache add   name: 'n',
+41 silly cache add   rawSpec: '',
+41 silly cache add   spec: 'latest',
+41 silly cache add   type: 'tag' }
+42 silly addNamed n@latest
+43 verbose addNamed "latest" is being treated as a dist-tag for n
+44 info addNameTag [ 'n', 'latest' ]
+45 silly mapToRegistry name n
+46 silly mapToRegistry using default registry
+47 silly mapToRegistry registry https://registry.npmjs.org/
+48 silly mapToRegistry data Result {
+48 silly mapToRegistry   raw: 'n',
+48 silly mapToRegistry   scope: null,
+48 silly mapToRegistry   escapedName: 'n',
+48 silly mapToRegistry   name: 'n',
+48 silly mapToRegistry   rawSpec: '',
+48 silly mapToRegistry   spec: 'latest',
+48 silly mapToRegistry   type: 'tag' }
+49 silly mapToRegistry uri https://registry.npmjs.org/n
+50 verbose addNameTag registry:https://registry.npmjs.org/n not in flight; fetching
+51 verbose get https://registry.npmjs.org/n not expired, no request
+52 silly addNameTag next cb for n with tag latest
+53 silly addNamed n@8.0.1
+54 verbose addNamed "8.0.1" is a plain semver version for n
+55 silly mapToRegistry name n
+56 silly mapToRegistry using default registry
+57 silly mapToRegistry registry https://registry.npmjs.org/
+58 silly mapToRegistry data Result {
+58 silly mapToRegistry   raw: 'n',
+58 silly mapToRegistry   scope: null,
+58 silly mapToRegistry   escapedName: 'n',
+58 silly mapToRegistry   name: 'n',
+58 silly mapToRegistry   rawSpec: '',
+58 silly mapToRegistry   spec: 'latest',
+58 silly mapToRegistry   type: 'tag' }
+59 silly mapToRegistry uri https://registry.npmjs.org/n
+60 verbose addRemoteTarball https://registry.npmjs.org/n/-/n-8.0.1.tgz not in flight; adding
+61 verbose addRemoteTarball [ 'https://registry.npmjs.org/n/-/n-8.0.1.tgz',
+61 verbose addRemoteTarball   'fb2cb4cedd107f54dc1c5b4ef64cafedd1d619ed' ]
+62 info retry fetch attempt 1 at 4:54:43 PM
+63 info attempt registry request try #1 at 4:54:43 PM
+64 http fetch GET https://registry.npmjs.org/n/-/n-8.0.1.tgz
+65 http fetch 200 https://registry.npmjs.org/n/-/n-8.0.1.tgz
+66 silly fetchAndShaCheck shasum fb2cb4cedd107f54dc1c5b4ef64cafedd1d619ed
+67 verbose addTmpTarball /tmp/npm-26409-6c4f71ed/registry.npmjs.org/n/-/n-8.0.1.tgz not in flight; adding
+68 verbose addTmpTarball already have metadata; skipping unpack for n@8.0.1
+69 verbose correctMkdir /home/rootsoftit/.npm correctMkdir not in flight; initializing
+70 silly cache afterAdd n@8.0.1
+71 verbose afterAdd /home/rootsoftit/.npm/n/8.0.1/package/package.json not in flight; writing
+72 verbose correctMkdir /home/rootsoftit/.npm correctMkdir not in flight; initializing
+73 verbose afterAdd /home/rootsoftit/.npm/n/8.0.1/package/package.json written
+74 silly loadAllDepsIntoIdealTree Finishing
+75 silly loadIdealTree Finishing
+76 silly currentTree lib
+76 silly currentTree └── n@8.0.1
+77 silly idealTree lib
+77 silly idealTree └── n@8.0.1
+78 silly generateActionsToTake Starting
+79 silly install generateActionsToTake
+80 warn checkPermissions Missing write access to /usr/local/lib/node_modules/n
+81 silly rollbackFailedOptional Starting
+82 silly rollbackFailedOptional Finishing
+83 silly runTopLevelLifecycles Finishing
+84 silly install printInstalled
+85 verbose stack Error: EACCES: permission denied, access '/usr/local/lib/node_modules/n'
+85 verbose stack     at Error (native)
+86 verbose cwd /home/rootsoftit/Desktop/node/CRUD
+87 error Linux 4.15.0-142-generic
+88 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "n"
+89 error node v6.10.3
+90 error npm  v3.10.10
+91 error path /usr/local/lib/node_modules/n
+92 error code EACCES
+93 error errno -13
+94 error syscall access
+95 error Error: EACCES: permission denied, access '/usr/local/lib/node_modules/n'
+95 error     at Error (native)
+95 error  { Error: EACCES: permission denied, access '/usr/local/lib/node_modules/n'
+95 error     at Error (native)
+95 error   errno: -13,
+95 error   code: 'EACCES',
+95 error   syscall: 'access',
+95 error   path: '/usr/local/lib/node_modules/n' }
+96 error Please try running this command again as root/Administrator.
+97 verbose exit [ -13, true ]

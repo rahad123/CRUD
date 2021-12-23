@@ -1,0 +1,7 @@
+POST http://localhost:3000/user
+Content-Type: application/json
+{
+    "username": "nosu",
+    "email": "nosu@diu.edu.bd",
+    "password": "56"
+}
