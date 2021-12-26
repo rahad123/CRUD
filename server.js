@@ -28,15 +28,14 @@ app.use (
     })
 ); 
 
-const isAuth = (req, res, next) => {
+function isAuth(req, res, next) {
     if(req.session.isAuth) { 
         console.log("you are logged in");
+        next();
     } else {
         res.send("not success");
-        //console.log("not Autheticate");
         console.log("not logged in");
     }
-        next();
 }
 
 app.get('/user', (req, res) => {
@@ -79,10 +78,6 @@ app.get('/post', async (req, res) => {
 app.get('/post/:id', async (req, res) => {
     const postId = req.params.id;
     const post = await Post.findById(postId).populate('category').populate('user');
-    // await Post.findById(postId).populate('user').populate('category').exec(function(err, post){
-    //     res.json(post);
-    //     res.send("success");
-	// });
     res.json(post);
 })
 
@@ -153,13 +148,8 @@ app.put('/category/:id', (req, res) => {
     try {
         const categoryId = req.params.id; 
         const categoryUpdate = req.body;
-        //console.log(req.body);
+
         Category.findByIdAndUpdate(categoryId, categoryUpdate, {new : true}, (err, category) => {
-            // if(err) {
-            //     console.log(err);
-            //     return res.send('error')
-            // }
-            // console.log(user);
             res.send(category);
         });
     }
@@ -175,6 +165,25 @@ app.delete('/category/:id', (req, res) => {
     });
 })
 
+app.post('/signup', async (req, res) => {
+    const {username, email, password} = req.body;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 20);
+
+        let user = new User({
+            username : username,
+            email : email,
+            password : hashedPassword
+        });
+
+        await user.save();
+    } catch {
+        res.status("not found");
+    }
+
+})
+
 app.post('/login', async (req, res) => {
  
     const {email, password} = req.body;
@@ -183,37 +192,32 @@ app.post('/login', async (req, res) => {
     let passwordHash = await bcrypt.hash(user.password, 10);
     const isMatch = await bcrypt.compare(password, passwordHash);
 
-    let save = req.session.userId;
-    let store = await User.findOne({save});
-     
+    // let save = req.session.userId;
+    // let store = await User.findOne({save});
+
     if(!user) {
         console.log("not matched"); 
     } else if(!isMatch) {
         console.log("not matched");
-    } else if(store.id == save) {
-        console.log("You are Already LoggedIn.");
-    }
-     else {  
+    } else if(req.session.isAuth) {
+        console.log("you are already logged in.")
+    } else {  
         req.session.isAuth = true;
         //console.log(req.session);  // just for understanding is session created or not.
         //console.log(req.session.id);  // ane the id too.
         let store = await User.find({email});
         let session = req.session;
         for(let i = 0; i < store.length; i++) {
-            //req.session.store(store[i].id);
             session.userId = store[i].id; 
- 
         }
-        res.send("session");
-        console.log("matched");
+        console.log("You are Welcome.");
     } 
-
-    // console.log(isMatch);
 })
 
 // app.get('/postcheck', async (req, res) => {
-//     let save = req.session.userId;
-//     let store = await User.findOne({save});
+//     if(isAuth) {
+//         console.log(isAuth);
+//     }
 
 // })
 
@@ -222,12 +226,8 @@ app.put('/user/:id', (req, res) => {
         const userId = req.params.id; 
         const userUpdate = req.body;
         console.log(req.body);
+
         User.findByIdAndUpdate(userId, userUpdate, {new : true}, (err, user) => {
-            // if(err) {
-            //     console.log(err);
-            //     return res.send('error')
-            // }
-            // console.log(user);
             res.send(user);
         });
     }
