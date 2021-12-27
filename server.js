@@ -28,13 +28,15 @@ app.use (
     })
 ); 
 
-function isAuth(req, res, next) {
+const guest = (req, res, next) => {
+    if(!req.session.isAuth) {
+        res.send("You have to log in first.");
+    }
+}
+const isAuth = (req, res, next) => {
     if(req.session.isAuth) { 
         console.log("you are logged in");
         next();
-    } else {
-        res.send("not success");
-        console.log("not logged in");
     }
 }
 
@@ -51,24 +53,24 @@ app.get('/user/:id', (req, res) => {
     }) 
 })
 
-app.post('/user', async (req, res) => { 
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+// app.post('/user', async (req, res) => { 
+//     try {
+//         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-        let user = new User({
-            username : req.body.username,
-            email : req.body.email,
-            password : hashedPassword
-        });
-        user.save().then((doc) => {
-            res.json(doc);
-        }).catch((err) => {
-            console.log(err);
-        });
-    } catch {
-        res.status("not found");
-    }
-});
+//         let user = new User({
+//             username : req.body.username,
+//             email : req.body.email,
+//             password : hashedPassword
+//         });
+//         user.save().then((doc) => {
+//             res.json(doc);
+//         }).catch((err) => {
+//             console.log(err);
+//         });
+//     } catch {
+//         res.status("not found");
+//     }
+// });
 
 app.get('/post', async (req, res) => {
     const post = await Post.find({});
@@ -103,13 +105,8 @@ app.put('/post/:id', (req, res) => {
     try {
         const postId = req.params.id; 
         const postUpdate = req.body;
-        //console.log(req.body);
+
         Post.findByIdAndUpdate(postId, postUpdate, {new : true}, (err, post) => {
-            // if(err) {
-            //     console.log(err);
-            //     return res.send('error')
-            // }
-            // console.log(user);
             res.send(post);
         });
     }
@@ -176,49 +173,47 @@ app.post('/signup', async (req, res) => {
             email : email,
             password : hashedPassword
         });
+        user.save().then((doc) => {
+            res.json(doc);
+        }).catch((err) => {
+            console.log(err);
+        });
 
-        await user.save();
+        console.log("You are successfully Registered.");
+    
     } catch {
         res.status("not found");
     }
-
+    console.log("save");
 })
 
 app.post('/login', async (req, res) => {
  
+    if(req.session.isAuth) {
+        console.log("you are already logged in.");
+        return;
+    }
+
     const {email, password} = req.body;
     const user = await User.findOne({ email });
 
     let passwordHash = await bcrypt.hash(user.password, 10);
     const isMatch = await bcrypt.compare(password, passwordHash);
 
-    // let save = req.session.userId;
-    // let store = await User.findOne({save});
-
     if(!user) {
         console.log("not matched"); 
     } else if(!isMatch) {
         console.log("not matched");
-    } else if(req.session.isAuth) {
-        console.log("you are already logged in.")
     } else {  
         req.session.isAuth = true;
-        //console.log(req.session);  // just for understanding is session created or not.
-        //console.log(req.session.id);  // ane the id too.
-        let store = await User.find({email});
         let session = req.session;
-        for(let i = 0; i < store.length; i++) {
-            session.userId = store[i].id; 
-        }
+        session.userId = user.id; 
         console.log("You are Welcome.");
     } 
 })
 
-// app.get('/postcheck', async (req, res) => {
-//     if(isAuth) {
-//         console.log(isAuth);
-//     }
-
+// app.get('/registration', async (req, res) => {
+//     app.use(guest);
 // })
 
 app.put('/user/:id', (req, res) => { 
@@ -243,7 +238,7 @@ app.delete('/user/:id', (req, res) => {
     });
 })
 
-app.get('/dashboard', isAuth, (req, res) => {
+app.get('/dashboard',guest, isAuth, (req, res) => {
     res.send("success");
     console.log("Authenticated");
 })

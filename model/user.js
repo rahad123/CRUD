@@ -1,4 +1,3 @@
-//import {client} from "../config.js";
 import {mongoose} from "../config.js"
 
 let userSchema = new mongoose.Schema({
@@ -9,6 +8,7 @@ let userSchema = new mongoose.Schema({
     },
     email : {
         type : String,
+        index : true,
         required : true,
         unique : true
     },
